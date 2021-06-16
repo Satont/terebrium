@@ -14,6 +14,7 @@
     "eslint:fix": "npx eslint --ext .ts --fix src",
     "prisma": "prisma",
     "migration:generate": "prisma migrate dev --name",
+    "migration:run": "prisma migrate deploy",
     "dev:postgres": "docker-compose -f docker-compose.dev.yml up -d"
   },
   "author": "Satont <satontworldwide@gmail.com>",
