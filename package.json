@@ -1,0 +1,51 @@
+{
+  "name": "typescript-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node dist/main.js",
+    "dev": "ts-node-dev --inspect=0.0.0.0:9229 --poll --respawn --ignore-watch node_modules --transpile-only src/main.ts",
+    "debug": "node --inspect=0.0.0.0:9229 --nolazy ./dist/main.js",
+    "prebuild": "rimraf dist",
+    "build": "tsc",
+    "eslint": "npx eslint --ext .ts src",
+    "eslint:fix": "npx eslint --ext .ts --fix src",
+    "prisma": "prisma",
+    "migration:generate": "prisma migrate dev --name",
+    "dev:postgres": "docker-compose -f docker-compose.dev.yml up -d"
+  },
+  "author": "Satont <satontworldwide@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@nestjs/cli": "^7.6.0",
+    "@nestjs/schematics": "^7.3.1",
+    "@types/dotenv": "^8.2.0",
+    "@types/node": "^14.14.37",
+    "@types/source-map-support": "^0.5.3",
+    "@typescript-eslint/eslint-plugin": "^4.20.0",
+    "@typescript-eslint/parser": "^4.20.0",
+    "eslint": "^7.23.0",
+    "prettier": "^2.3.1",
+    "prisma": "^2.24.1",
+    "rimraf": "^3.0.2",
+    "ts-node-dev": "^1.1.6",
+    "typescript": "^4.2.3"
+  },
+  "dependencies": {
+    "@nestjs/common": "^7.6.17",
+    "@nestjs/core": "^7.6.17",
+    "@nestjs/platform-fastify": "^7.6.17",
+    "@prisma/client": "^2.24.1",
+    "dotenv": "^8.2.0",
+    "fastify": "^3.17.0",
+    "nestjs-telegraf": "^2.2.3",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.1.0",
+    "source-map-support": "^0.5.19",
+    "telegraf": "^4.3.0",
+    "twitch": "^4.5.5",
+    "twitch-auth": "^4.5.5"
+  }
+}

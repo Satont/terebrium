@@ -1,0 +1,52 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl"]
+}
+
+model Chat {
+  id             Int             @id
+  twitchChannels TwitchChannel[]
+  titles         Title[]
+  categories     Category[]
+  createdAt      DateTime        @default(now())
+
+  @@map(name: "chats")
+}
+
+model TwitchChannel {
+  id        String   @id
+  chat      Chat     @relation(fields: [chatId], references: [id])
+  chatId    Int
+  name      String
+  createdAt DateTime @default(now())
+  accessToken String
+  refreshToken String
+
+  @@index([id])
+  @@map(name: "twitch_channels")
+}
+
+model Title {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  chat      Chat     @relation(fields: [chatId], references: [id])
+  chatId    Int
+  value     String
+  createdAt DateTime @default(now())
+
+  @@map(name: "titles")
+}
+
+model Category {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  chat      Chat     @relation(fields: [chatId], references: [id])
+  chatId    Int
+  value     String
+  createdAt DateTime @default(now())
+
+  @@map(name: "categories")
+}
