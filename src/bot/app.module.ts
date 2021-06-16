@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TelegrafModule } from 'nestjs-telegraf';
 import config from '../modules/config';
-import { AppController } from './app.controller';
+import { AppUpdate } from './app.update';
 import { AppService } from './app.service';
 import { CategoriesModule } from './categories/categories.module';
 import { ChannelsModule } from './channels/channels.module';
@@ -25,7 +25,7 @@ import { AuthModule } from './auth/auth.module';
     AuthModule,
   ],
   controllers: [],
-  providers: [AppController, AppService],
+  providers: [AppUpdate, AppService],
   exports: [],
 })
 export class AppModule {}

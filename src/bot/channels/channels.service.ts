@@ -42,7 +42,10 @@ export class ChannelsService {
       await ctx.editMessageReplyMarkup(keyboard.reply_markup);
       await ctx.answerCbQuery();
     } else {
-      await ctx.reply('Your channels', keyboard);
+      await ctx.reply(
+        channels.length ? 'Your channel list you just added to the bot' : 'Your channel list is empty. Add one by using /addchannel',
+        keyboard,
+      );
     }
   }
 
