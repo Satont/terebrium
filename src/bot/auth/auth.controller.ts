@@ -1,11 +1,13 @@
-import { Controller, Get, Query, Req } from '@nestjs/common';
+import { Controller, Get, Query, Req, UseInterceptors } from '@nestjs/common';
 import { FastifyRequest } from 'fastify';
 import { InjectBot } from 'nestjs-telegraf';
 import { Telegraf, Context } from 'telegraf';
+import { ResponseTimeInterceptor } from '../commons/response-time.interceptor';
 import { TwitchService } from '../twitch/twitch.service';
 import { AuthService } from './auth.service';
 
 @Controller('auth')
+@UseInterceptors(ResponseTimeInterceptor)
 export class AuthController {
   constructor(
     private readonly twitchService: TwitchService,

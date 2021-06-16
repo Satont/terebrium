@@ -2,10 +2,11 @@ import { UseInterceptors } from '@nestjs/common';
 import { Command, Ctx, Update } from 'nestjs-telegraf';
 import { Context, Markup } from 'telegraf';
 import config from '../../modules/config';
+import { ResponseTimeInterceptor } from '../commons/response-time.interceptor';
 import { TwitchService } from '../twitch/twitch.service';
 
 @Update()
-@UseInterceptors()
+@UseInterceptors(ResponseTimeInterceptor)
 export class AuthUpdate {
   private readonly neededScopes: string[] = ['user:edit:broadcast'];
 

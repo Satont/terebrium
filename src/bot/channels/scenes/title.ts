@@ -1,10 +1,13 @@
+import { UseInterceptors } from '@nestjs/common';
 import { Action, Ctx, On, Scene, SceneEnter } from 'nestjs-telegraf';
 import { Markup, Scenes } from 'telegraf';
+import { ResponseTimeInterceptor } from '../../commons/response-time.interceptor';
 import { TitlesService } from '../../titles/titles.service';
 import * as constants from '../channels.constants';
 import { ChannelsService } from '../channels.service';
 
 @Scene(constants.CHANGE_CHANNEL_TITLE)
+@UseInterceptors(ResponseTimeInterceptor)
 export class ChangeChannelTitleScene {
   constructor(private readonly service: ChannelsService, private readonly titleService: TitlesService) {}
 
@@ -31,6 +34,7 @@ export class ChangeChannelTitleScene {
   }
 
   @On('text')
+  @UseInterceptors(ResponseTimeInterceptor)
   async onMessage(@Ctx() ctx: Scenes.SceneContext) {
     if ('text' in ctx.message) {
       const value = ctx.message.text;

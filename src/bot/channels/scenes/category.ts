@@ -3,8 +3,11 @@ import { Markup, Scenes } from 'telegraf';
 import { CategoriesService } from '../../categories/categories.service';
 import { ChannelsService } from '../channels.service';
 import * as constants from '../channels.constants';
+import { ResponseTimeInterceptor } from '../../commons/response-time.interceptor';
+import { UseInterceptors } from '@nestjs/common';
 
 @Scene(constants.CHANGE_CHANNEL_CATEGORY)
+@UseInterceptors(ResponseTimeInterceptor)
 export class ChangeChannelCategoryScene {
   constructor(private readonly service: ChannelsService, private readonly categoriesService: CategoriesService) {}
 
